@@ -1,0 +1,1033 @@
+/* =========================================
+   1. VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================= */
+:root {
+    --oscuro: #2c3e50; /* Gris Oxford */
+    --claro: #f4f7f6; /* Gris fondo limpio */
+    --acento: #ffffff; /* Verde esmeralda científico */
+    --texto: #2c3e50;
+    --texto-sec: #7f8c8d;
+    --equipo-cor: black;
+    --blanco: #ffffff;
+    --acentopub: #7f8c8d; /* Verde esmeralda científico */
+
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--claro);
+    color: var(--texto);
+    line-height: 1.6;
+}
+.container,
+.containerdirec,
+.container-investigacion,
+.container-publicaciones {
+    max-width: 1900px;
+    margin: 0 auto;
+    display: grid;
+}
+html {
+    overflow-y: scroll;
+}
+/* =========================================
+   2. ESTRUCTURA GRID (CONTAINER)
+   ========================================= */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: auto 350px 250px auto;
+    gap: 20px;
+    grid-template-areas:
+        "header  header  header"
+        "nav     art1    nav-right"
+        "nav     art2    nav-right"
+        "footer  footer  footer";
+    max-width: 1900px; /* Ancho optimizado para legibilidad */
+    margin: 0 auto;
+}
+
+/* =========================================
+   3. COMPONENTES (HEADER, NAVS, ARTICLES)
+   ========================================= */
+/* Header y Pestañas */
+.header {
+    grid-area: header;
+    background-color: var(--oscuro);
+    color: var(--blanco);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* FIJAR ALTURA MÍNIMA PARA EVITAR SALTOS VERTICALES */
+    min-height: 200px; 
+    justify-content: center;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* FIJAR ANCHO PARA QUE EL TÍTULO NO EMPUJE LAS COLUMNAS */
+    width: auto; 
+    min-width: 600px; 
+    justify-content: center;
+}
+.logo-container h1 {
+    font-size: 2.2rem;
+    margin: 0;
+    white-space: nowrap; /* Evita que el texto intente colapsar */
+}
+
+.logo {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+}
+.tabs {
+    margin-top: 20px;
+    width: 100%;
+    background-color: var(--oscuro); /* Fondo sólido obligatorio */
+}
+.tabs ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+}
+
+.tabs li a {
+    color: #bdc3c7;
+    text-decoration: none;
+    padding: 8px 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.tabs li a:hover {
+    color: var(--blanco);
+    border-bottom: 2px solid var(--acento);
+}
+
+/* =========================================
+   3. NAV IZQUIERDO (IMAGEN + RESUMEN)
+   ========================================= */
+.nav {
+    grid-area: nav;
+    background-color: var(--blanco);
+    border: 1px solid #dcdfe3;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    /* Solución al problema del clic: */
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.nav h3 {
+    font-size: 1rem;
+    text-align: center;
+    color: var(--oscuro);
+    border-bottom: 2px solid var(--acento);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+.featured-paper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.img-link-paper {
+    width: 100%;
+    height: 400px; /* Altura fija para la imagen superior */
+    object-fit: cover;
+    transition: transform 0.4s;
+    display: block;
+}
+.img-link-paper:hover {
+    transform: scale(1.05);
+}
+.paper-summary {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.paper-summary h4 {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    color: var(--oscuro);
+    border-bottom: 2px solid var(--acento);
+    display: inline-block;
+}
+
+.paper-summary p {
+    font-size: 0.85rem;
+    color: var(--texto-sec);
+    margin-bottom: 15px;
+}
+
+.read-more {
+    text-decoration: none;
+    color: var(--acento);
+    font-weight: bold;
+    font-size: 0.85rem;
+    margin-top: auto; /* Empuja el link al fondo */
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* Artículos (Carrusel y Texto) */
+.article-1,
+.article-2 {
+    background-color: var(--blanco);
+    border-radius: 12px;
+    border: 1px solid #dcdfe3;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.article-1 {
+    grid-area: art1;
+    padding: 0 !important;
+}
+.article-2 {
+    grid-area: art2;
+    padding: 30px;
+}
+
+article h3 {
+    color: var(--oscuro);
+    border-left: 4px solid var(--acento);
+    padding-left: 10px;
+    margin-top: 0;
+}
+
+/* Nav Derecho (Referencias) */
+.nav-right {
+    grid-area: nav-right;
+    background-color: var(--blanco);
+    border-radius: 12px;
+    border: 1px solid #dcdfe3;
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+.nav-right h3 {
+    font-size: 1rem;
+    text-align: center;
+    color: var(--oscuro);
+    border-bottom: 2px solid var(--acento);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* =========================================
+   4. TARJETAS DE REFERENCIA (CIENCIA)
+   ========================================= */
+.nav-right {
+    grid-area: nav-right;
+    background-color: var(--blanco);
+    border-radius: 12px;
+    border: 1px solid #dcdfe3;
+    padding: 13px;
+    box-shadow: var(--shadow);
+    /* Evita que cualquier efecto de movimiento se salga del borde del nav */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.science-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible del nav */
+}
+
+.card-link {
+    display: flex;
+    gap: 10px;
+    background-color: var(--claro);
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s;
+    /* Muy importante: asegura que la tarjeta no se ensanche más allá del nav */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--acento);
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+
+.link-content {
+    /* Permite que el texto se ajuste y no empuje los bordes */
+    flex: 1;
+    min-width: 0;
+}
+
+.link-content strong {
+    color: var(--oscuro);
+    font-size: 0.85rem;
+    display: block;
+    /* Si el título es muy largo, se corta con puntos suspensivos o salta de línea ordenadamente */
+    word-wrap: break-word;
+}
+
+.link-content small {
+    color: var(--texto-sec);
+    font-size: 0.75rem;
+}
+
+.citation {
+    margin: 8px 0 0 0;
+    font-size: 0.7rem;
+    color: var(--texto-sec);
+    font-style: italic;
+    border-left: 2px solid #dcdfe3;
+    padding-left: 8px;
+    /* Ajuste para que el texto largo de la cita no desborde */
+    word-wrap: break-word;
+}
+
+.card-link:hover {
+    background-color: var(--blanco);
+    border-color: var(--acento);
+    /* Reducimos un poco el movimiento para que no choque visualmente con el borde */
+    transform: translateX(3px);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================
+   5. CARRUSEL (ANIMACIÓN)
+   ========================================= */
+.carousel-container {
+    width: 100%;
+    height: 100%;
+}
+.carousel-track {
+    display: flex;
+    width: 400%;
+    height: 100%;
+    animation: scroll 15s infinite ease-in-out;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.caption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(44, 62, 80, 0.7);
+    color: var(--blanco);
+    padding: 12px;
+    text-align: center;
+    backdrop-filter: blur(3px);
+}
+
+@keyframes scroll {
+    0%,
+    25% {
+        transform: translateX(0);
+    }
+    33%,
+    58% {
+        transform: translateX(-25%);
+    }
+    66%,
+    91% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(-75%);
+    }
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+/* --- FOOTER PROFESIONAL --- */
+.footer {
+    grid-area: footer;
+    background-color: var(--oscuro);
+    color: #BDC3C7;
+    padding: 60px 40px 20px;
+    border-radius: 12px 12px 0 0; /* Solo redondeado arriba */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 220px;
+}
+
+.footer-column h4 {
+    color: var(--blanco);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Línea decorativa bajo títulos */
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--acento);
+}
+
+.footer-logo {
+    height: 60px;
+    margin-bottom: 15px;
+    filter: brightness(0) invert(1); /* Hace el logo blanco si es oscuro */
+}
+
+/* Enlaces con iconos */
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #BDC3C7;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-links a i {
+    font-size: 0.7rem;
+    color: var(--acento);
+}
+
+.footer-links a:hover {
+    color: var(--blanco);
+    transform: translateX(5px);
+}
+
+/* Información de contacto */
+.contact-info {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.contact-info i {
+    color: var(--acento);
+    margin-right: 10px;
+}
+
+/* Redes Sociales Mejoradas */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--blanco);
+    font-size: 1.2rem;
+    transition: 0.4s;
+}
+
+.social-icons a:hover {
+    background-color: var(--acento);
+    transform: translateY(-5px);
+}
+
+/* Barra de Copyright */
+.footer-bottom {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 40px;
+    padding-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-bottom-links a {
+    color: #BDC3C7;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer-bottom-links a:hover {
+    color: var(--acento);
+}
+
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-column h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-links a {
+        justify-content: center;
+    }
+    .social-icons {
+        justify-content: center;
+    }
+    .footer-bottom {
+        justify-content: center;
+    }
+}
+/* =========================================
+   7. Equipo.html (Ajustado a 2 por fila)
+   ========================================= */
+
+.equipo-page {
+    /* Definimos dos columnas iguales */
+    grid-template-columns: 1fr 1fr;
+    /* Las filas se ajustan solas según el contenido */
+    grid-template-rows: auto auto auto auto;
+    /* El gap genera el padding/margen de 20px entre celdas */
+    gap: 20px;
+
+    grid-template-areas:
+        "header  header"
+        "area-a  area-b"
+        "area-c  area-d"
+        "footer  footer";
+        max-width: 1900px;
+    margin: 0 auto;
+}
+
+
+/* Asignación de áreas */
+.area-a {
+    grid-area: area-a;
+}
+.area-b {
+    grid-area: area-b;
+}
+.area-c {
+    grid-area: area-c;
+}
+.area-d {
+    grid-area: area-d;
+}
+
+.member-card {
+    display: flex;
+    background-color: var(--blanco);
+    border-radius: 12px;
+    border: 1px solid #dcdfe3;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    align-items: center;
+    padding: 20px !important; /* Un poco menos de padding interno para que quepan dos */
+    min-height: 250px;
+}
+
+.member-info {
+    flex: 1.5;
+    padding-right: 15px;
+}
+
+.member-info h3 {
+    margin: 0;
+    color: var(--oscuro);
+    font-size: 1.3rem; /* Tamaño reducido para el diseño de 2 columnas */
+}
+
+.member-info .role {
+    color: var(--acento);
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+.academic-details li {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+/* Foto circular ajustada */
+.member-photo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.member-photo img {
+    width: 120px; /* Tamaño más pequeño para que quepa en la columna */
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--claro);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste para que el footer ocupe las dos columnas */
+.equipo-page .footer {
+    grid-area: footer;
+}
+/*  */
+.member-email {
+    text-decoration: none; /* Quita el subrayado */
+    color: var(--equipo-cor); /* Usa el color gris profesional que definimos */
+    transition: color 0.3s ease;
+}
+
+.member-email:hover {
+    color: var(--equipo-cor); /* Cambia a verde esmeralda al pasar el mouse */
+    text-decoration: underline; /* Opcional: subraya solo al pasar el mouse */
+}
+/* =========================================
+   8. Director.html (Diseño Vertical)
+   ========================================= */
+/* --- DISEÑO VERTICAL DIRECTOR --- */
+.containerdirec {
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-template-rows: auto auto auto; 
+    gap: 20px;
+    grid-template-areas:
+        "header"
+        "dir"
+        "footer";
+    max-width: 1900px; /* Reducido para mejor legibilidad de texto */
+    margin: 0 auto;
+}
+
+.director-profile {
+    grid-area: dir;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--blanco);
+    border-radius: 12px;
+    border: 1px solid #dcdfe3;
+    box-shadow: var(--shadow);
+    padding: 60px !important;
+    gap: 40px;
+}
+
+.member-info-direc {
+    width: 100%;
+    max-width: 850px; /* Ancho óptimo para lectura académica */
+}
+
+.member-info-direc .bio {
+    text-align: justify;
+    margin-top: 25px;
+    color: #444;
+}
+
+.member-photo-direc img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid var(--acento);
+    box-shadow: var(--shadow);
+}
+
+.photo-info-direc {
+    margin-top: 15px;
+    text-align: center;
+    background-color: var(--claro);
+    padding: 12px 25px;
+    border-radius: 50px; /* Estilo píldora */
+    border: 1px solid #DCDFE3;
+}
+
+.photo-info-direc p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--oscuro);
+}
+
+/* --- PUBLICACIONES --- */
+.publications-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.publications-list li {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #DCDFE3;
+}
+
+.pub-year {
+    background-color: var(--oscuro);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    height: fit-content;
+}
+
+.pub-link {
+    color: var(--acento);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.pub-link:hover {
+    text-decoration: underline;
+}
+
+/* Badge Directiva */
+.badge {
+    background-color: var(--acento);
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+/* =========================================
+   9. Investigacion.html
+   ========================================= */
+
+.container-investigacion {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 30px;
+    grid-template-areas:
+        "header"
+        "res-header"
+        "res-grid"
+        "footer";
+    max-width: 1900px;
+    margin: 0 auto;
+}
+
+.research-header {
+    grid-area: res-header;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.research-header h2 {
+    font-size: 2.2rem;
+    color: var(--oscuro);
+    margin-bottom: 10px;
+}
+
+.research-header p {
+    color: var(--texto-sec);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Contenedor de la Cuadrícula */
+.research-grid {
+    grid-area: res-grid;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 por fila */
+    gap: 25px;
+    padding: 0 20px;
+}
+
+.research-card {
+    background-color: var(--blanco);
+    border-radius: 12px;
+    border: 1px solid #DCDFE3;
+    padding: 40px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.research-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--acento);
+}
+
+/* Caja del Icono */
+.icon-box {
+    width: 80px;
+    height: 80px;
+    background-color: var(--claro);
+    color: var(--acento);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 20px;
+    transition: 0.3s;
+}
+
+.research-card:hover .icon-box {
+    background-color: var(--acento);
+    color: white;
+}
+
+.research-card h3 {
+    color: var(--oscuro);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+.research-topics {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.research-topics li {
+    background-color: var(--claro);
+    color: var(--texto-sec);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+    .research-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   10. Publicaciones.html
+   ========================================= */
+.container-publicaciones {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+    gap: 30px;
+    grid-template-areas:
+        "header"
+        "res-header"
+        "res-grid"
+        "footer";
+    max-width: 1900px;
+    margin: 0 auto;
+}
+
+.research-team {
+    grid-area: res-header;
+    text-align: center;
+}
+.publications-hero {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(to right, var(--oscuro), #34495e);
+    color: white;
+    border-radius: 12px;
+}
+
+.publications-hero h2 { margin: 0; font-size: 2rem; }
+.publications-hero p { opacity: 0.8; margin-top: 10px; }
+
+.publications-feed {
+    grid-area: res-grid;
+    padding: 20px;
+}
+
+.year-group {
+    margin-bottom: 50px;
+}
+
+.year-title {
+    font-size: 1.8rem;
+    color: var(--oscuro);
+    border-bottom: 3px solid var(--black);
+    display: inline-block;
+    padding-right: 50px;
+    margin-bottom: 25px;
+}
+
+.pub-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    background-color: var(--blanco);
+    border: 1px solid #DCDFE3;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+}
+
+.pub-item:hover {
+    transform: scale(1.01);
+}
+
+/* El "Destacado" tiene un borde lateral de color acento */
+.pub-item.destacado {
+    border-left: 5px solid var(--acento);
+}
+
+.pub-type {
+    background-color: var(--blanco); /* Cambiado a blanco para que la imagen luzca limpia */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Quitamos el padding para que la imagen llegue a los bordes si lo deseas */
+    border-right: 1px solid #DCDFE3;
+    width: 150px; /* Ancho fijo para la columna de la imagen */
+    overflow: hidden;
+}
+
+.pub-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Esto hace que la imagen cubra el área sin deformarse */
+    transition: transform 0.3s ease;
+}
+
+/* Efecto visual al pasar el mouse por la publicación */
+.pub-item:hover .pub-thumb {
+    transform: scale(1.1); /* Zoom sutil a la miniatura */
+}
+
+.pub-details {
+    padding: 20px;
+}
+
+.pub-details h4 {
+    margin: 0 0 10px 0;
+    color: var(--oscuro);
+    font-size: 1.1rem;
+    line-height: 1.3;
+}
+
+.authors {
+    font-size: 0.9rem;
+    color: #444;
+    margin: 5px 0;
+}
+
+.journal {
+    font-size: 0.85rem;
+    color: var(--texto-sec);
+}
+
+/* --- BOTONES DE PUBLICACIONES --- */
+.pub-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 12px;
+}
+
+.btn-article, .btn-summary {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre texto e icono */
+}
+
+/* Botón "Ver Artículo" (Verde Esmeralda) */
+.btn-article {
+    background-color: var(--oscuro);
+    color: white;
+    border: 1px solid var(--acentopub);
+}
+
+.btn-article:hover {
+    background-color: transparent;
+    color: var(--acentopub);
+    transform: translateY(-2px);
+}
+
+/* Botón "Ver Resumen" (Gris/Azul Oxford) */
+.btn-summary {
+    background-color: var(--oscuro);
+    color: white;
+    border: 1px solid var(--acentopub);
+}
+
+.btn-summary:hover {
+    background-color: transparent;
+    color: var(--acentopub);
+    transform: translateY(-2px);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .pub-item {
+        grid-template-columns: 1fr;
+    }
+    .pub-type {
+        border-right: none;
+        border-bottom: 1px solid #DCDFE3;
+    }
+}

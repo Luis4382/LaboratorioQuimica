@@ -38,20 +38,19 @@ html {
 /* =========================================
    2. ESTRUCTURA GRID (CONTAINER)
    ========================================= */
+
 .container {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: auto 350px 250px auto;
+    /* Definimos alturas máximas para las filas centrales */
+    grid-template-rows: 400px 300px; 
     gap: 20px;
     grid-template-areas:
-        "header  header  header"
-        "nav     art1    nav-right"
-        "nav     art2    nav-right"
-        "footer  footer  footer";
-    max-width: 1900px; /* Ancho optimizado para legibilidad */
-    margin: 0 auto;
+        "nav art1 nav-right"
+        "nav art2 nav-right";
+    max-width: 1600px;
+    margin: 20px auto;
 }
-
 /* =========================================
    3. COMPONENTES (HEADER, NAVS, ARTICLES)
    ========================================= */
@@ -76,11 +75,11 @@ html {
     gap: 15px;
     /* FIJAR ANCHO PARA QUE EL TÍTULO NO EMPUJE LAS COLUMNAS */
     width: auto; 
-    min-width: 600px; 
+    min-width: auto; 
     justify-content: center;
 }
 .logo-container h1 {
-    font-size: 2.2rem;
+    font-size: clamp(1.2rem, 4vw, 2.2rem); /* Tamaño fluido */
     margin: 0;
     white-space: nowrap; /* Evita que el texto intente colapsar */
 }
@@ -119,6 +118,7 @@ html {
 /* =========================================
    3. NAV IZQUIERDO (IMAGEN + RESUMEN)
    ========================================= */
+
 .nav {
     grid-area: nav;
     background-color: var(--blanco);
@@ -188,15 +188,12 @@ html {
 }
 
 /* Artículos (Carrusel y Texto) */
-.article-1,
-.article-2 {
+.article-1, .article-2 {
     background-color: var(--blanco);
     border-radius: 12px;
     border: 1px solid #dcdfe3;
-    box-shadow: var(--shadow);
     overflow: hidden;
 }
-
 .article-1 {
     grid-area: art1;
     padding: 0 !important;
@@ -235,28 +232,67 @@ article h3 {
 /* =========================================
    4. TARJETAS DE REFERENCIA (CIENCIA)
    ========================================= */
-.nav-right {
-    grid-area: nav-right;
+ .nav-right {
     background-color: var(--blanco);
-    border-radius: 12px;
     border: 1px solid #dcdfe3;
-    padding: 13px;
+    border-radius: 12px;
     box-shadow: var(--shadow);
-    /* Evita que cualquier efecto de movimiento se salga del borde del nav */
-    overflow: hidden;
     display: flex;
     flex-direction: column;
+    height: 100%; /* Ocupa todo el alto de las 2 filas del grid */
+    overflow: hidden; /* Evita que el contenido se salga de los bordes redondeados */
+    padding: 10px 5px 10px 10px;
 }
 
-.science-links {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%; /* Asegura que ocupe todo el ancho disponible del nav */
+/* 2. El envoltorio que crea el efecto de desvanecimiento (Fade) */
+.scroll-fade-wrapper {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* El degradado transparente al fondo para que no se vea el corte feo */
+.scroll-fade-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px; /* Tamaño del efecto de borrado */
+    background: linear-gradient(transparent, var(--blanco));
+    pointer-events: none; /* Permite hacer clic a través del degradado */
+}
+
+/* El contenedor interno que realmente hace el scroll */
+.scroll-content {
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 10px;
+    
+    /* Ocultar scrollbar en Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #bdc3c7 transparent;
+}
+.scroll-content::-webkit-scrollbar {
+    width: 4px; /* Muy delgada para que no moleste */
+}
+
+.scroll-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.scroll-content::-webkit-scrollbar-thumb {
+    background: #dcdfe3; /* Color gris suave */
+    border-radius: 10px;
+}
+
+.scroll-content::-webkit-scrollbar-thumb:hover {
+    background: var(--texto-sec);
 }
 
 .card-link {
     display: flex;
+    margin-bottom: 12px;
     gap: 10px;
     background-color: var(--claro);
     text-decoration: none;
@@ -264,7 +300,6 @@ article h3 {
     border-radius: 8px;
     border: 1px solid #e0e0e0;
     transition: all 0.3s;
-    /* Muy importante: asegura que la tarjeta no se ensanche más allá del nav */
     width: 100%;
     box-sizing: border-box;
 }
@@ -379,24 +414,23 @@ article h3 {
     grid-area: footer;
     background-color: var(--oscuro);
     color: #BDC3C7;
-    padding: 60px 40px 20px;
+    padding: 26px 26px 26px;
     border-radius: 12px 12px 0 0; /* Solo redondeado arriba */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 40px;
-    margin-top: 40px;
+    gap: 10px;
+    margin-top: 39px;
 }
 
 .footer-column {
     flex: 1;
-    min-width: 220px;
 }
 
 .footer-column h4 {
     color: var(--blanco);
     font-size: 1.1rem;
-    margin-bottom: 25px;
+    margin-bottom: 18px;
     position: relative;
     padding-bottom: 10px;
 }
@@ -407,14 +441,13 @@ article h3 {
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 40px;
+    width: 76px;
     height: 2px;
     background-color: var(--acento);
 }
 
 .footer-logo {
     height: 60px;
-    margin-bottom: 15px;
     filter: brightness(0) invert(1); /* Hace el logo blanco si es oscuro */
 }
 
@@ -425,7 +458,7 @@ article h3 {
 }
 
 .footer-links li {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .footer-links a {
@@ -435,7 +468,7 @@ article h3 {
     transition: 0.3s;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .footer-links a i {
@@ -451,7 +484,7 @@ article h3 {
 /* Información de contacto */
 .contact-info {
     font-size: 0.85rem;
-    margin-bottom: 15px;
+    margin-bottom: 13px;
     line-height: 1.5;
 }
 
@@ -463,8 +496,8 @@ article h3 {
 /* Redes Sociales Mejoradas */
 .social-icons {
     display: flex;
-    gap: 15px;
-    margin-top: 10px;
+    gap: 11px;
+    margin-top: 5px;
 }
 
 .social-icons a {
@@ -489,14 +522,11 @@ article h3 {
 .footer-bottom {
     width: 100%;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 40px;
-    padding-top: 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.8rem;
     flex-wrap: wrap;
-    gap: 15px;
 }
 
 .footer-bottom-links a {
@@ -848,12 +878,6 @@ article h3 {
     font-weight: bold;
 }
 
-/* Responsivo para móviles */
-@media (max-width: 768px) {
-    .research-grid {
-        grid-template-columns: 1fr;
-    }
-}
 
 /* =========================================
    10. Publicaciones.html
@@ -1016,13 +1040,3 @@ article h3 {
     transform: translateY(-2px);
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-    .pub-item {
-        grid-template-columns: 1fr;
-    }
-    .pub-type {
-        border-right: none;
-        border-bottom: 1px solid #DCDFE3;
-    }
-}

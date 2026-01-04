@@ -9,8 +9,8 @@
     --texto-sec: #7f8c8d;
     --equipo-cor: black;
     --blanco: #ffffff;
-    --acentopub: #7f8c8d; /* Verde esmeralda científico */
-
+    --acentopub: #6d7b7c; /* Verde esmeralda científico */
+    --iconosinv: #626e6f;
     --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 * {
@@ -837,7 +837,7 @@ article h3 {
 .icon-box {
     width: 80px;
     height: 80px;
-    background-color: var(--claro);
+    background-color: var(--iconosinv);
     color: var(--acento);
     border-radius: 50%;
     display: flex;

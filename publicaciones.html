@@ -31,73 +31,80 @@
             <h1>Publicaciones del Laboratorio</h1>
         </section>
 
-        <main class="publications-feed">
-            <div class="year-group">
-                <h3 class="year-title">2026</h3>
+<main class="publications-feed">
+    <div class="year-group">
+        <h3 class="year-title">2026</h3>
 
-                <article class="pub-item">
-                    <div class="pub-type">
-                        <img src="image/revista1.jpg" alt="Revista Accounts" class="pub-thumb">
-                    </div>
-
-                    <div class="pub-details">
-                        <h4>Light-controlled functions with metal–organic capsules: From guest release to catalysis.</h4>
-                        <p class="authors">Ghosh, A., & Nitschke, J. R.</p>
-                        <p class="journal"><em>Accounts of Chemical Research</em>, 59(1), 120-135.</p>
-                        <div class="pub-actions">
-                            <a href="https://doi.org/10.1021/acs.accounts.5c00790" target="_blank" class="btn-article">
-                                Ver Artículo <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </a>
-                            <a href="#" class="btn-summary">
-                                Ver Resumen <i class="fa-solid fa-file-lines"></i>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="pub-item">
-                    <div class="pub-type">
-                        <img src="image/revista1.jpg" alt="Revista Accounts" class="pub-thumb">
-                    </div>
-                    <div class="pub-details">
-                        <h4>Chemical reactions at electrified interfaces.</h4>
-                        <p class="authors">Li, S., Wang, Z. L., & Wei, D.</p>
-                        <p class="journal"><em>Accounts of Chemical Research</em>, 59(2), 210-225.</p>
-                        <div class="pub-actions">
-                            <a href="https://doi.org/10.1021/acs.accounts.5c00790" target="_blank" class="btn-article">
-                                Ver Artículo <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </a>
-                            <a href="#" class="btn-summary">
-                                Ver Resumen <i class="fa-solid fa-file-lines"></i>
-                            </a>
-                        </div>
-                    </div>
-                </article>
+        <article class="pub-item">
+            <div class="pub-type">
+                <img src="image/revista1.jpg" alt="Revista Accounts" class="pub-thumb">
             </div>
-
-            <div class="year-group">
-                <h3 class="year-title">2025</h3>
-
-                <article class="pub-item destacado">
-                    <div class="pub-type">
-                        <img src="image/revista1.jpg" alt="Revista Accounts" class="pub-thumb">
-                    </div>
-                    <div class="pub-details">
-                        <h4>Nanotecnología aplicada a la Química Verde.</h4>
-                        <p class="authors">Méndez, R., & Solís, M.</p>
-                        <p class="journal"><em>Avances en Química Sustentable</em>, Ed. Ciencia BUAP.</p>
-                        <div class="pub-actions">
-                            <a href="https://doi.org/10.1021/acs.accounts.5c00790" target="_blank" class="btn-article">
-                                Ver Artículo <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </a>
-                            <a href="#" class="btn-summary">
-                                Ver Resumen <i class="fa-solid fa-file-lines"></i>
-                            </a>
-                        </div>
-                    </div>
-                </article>
+            <div class="pub-details">
+                <h4>Light-controlled functions with metal–organic capsules: From guest release to catalysis.</h4>
+                <p class="authors">Ghosh, A., & Nitschke, J. R.</p>
+                <p class="journal"><em>Accounts of Chemical Research</em>, 59(1), 120-135.</p>
+                <div class="pub-actions">
+                    <a href="https://doi.org/10.1021/acs.accounts.5c00790" target="_blank" class="btn-article">
+                        Ver Artículo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <button class="btn-summary" onclick="toggleSummary(this)">
+                        Ver Resumen <i class="fa-solid fa-file-lines"></i>
+                    </button>
+                </div>
+                <div class="pub-summary-content">
+                    <p>Esta revisión examina cómo la luz puede ser utilizada como un estímulo externo para controlar las funciones de cápsulas metal-orgánicas autoensambladas. Se discuten mecanismos de liberación de huéspedes foto-inducidos y la modulación de procesos catalíticos dentro de cavidades confinadas, abriendo nuevas vías en la química supramolecular responsiva.</p>
+                </div>
             </div>
-        </main>
+        </article>
+
+        <article class="pub-item">
+            <div class="pub-type">
+                <img src="image/revista1.jpg" alt="Revista Accounts" class="pub-thumb">
+            </div>
+            <div class="pub-details">
+                <h4>Chemical reactions at electrified interfaces.</h4>
+                <p class="authors">Li, S., Wang, Z. L., & Wei, D.</p>
+                <p class="journal"><em>Accounts of Chemical Research</em>, 59(2), 210-225.</p>
+                <div class="pub-actions">
+                    <a href="#" target="_blank" class="btn-article">
+                        Ver Artículo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <button class="btn-summary" onclick="toggleSummary(this)">
+                        Ver Resumen <i class="fa-solid fa-file-lines"></i>
+                    </button>
+                </div>
+                <div class="pub-summary-content">
+                    <p>El estudio analiza el comportamiento de reactivos químicos bajo la influencia de campos eléctricos intensos en interfaces. Se destaca cómo la electrificación de superficies puede reducir las barreras de activación, alterando drásticamente la selectividad y velocidad de las reacciones en comparación con métodos térmicos convencionales.</p>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <div class="year-group">
+        <h3 class="year-title">2025</h3>
+        <article class="pub-item destacado">
+            <div class="pub-type">
+                <img src="image/revista1.jpg" alt="Revista Accounts" class="pub-thumb">
+            </div>
+            <div class="pub-details">
+                <h4>Nanotecnología aplicada a la Química Verde.</h4>
+                <p class="authors">Méndez, R., & Solís, M.</p>
+                <p class="journal"><em>Avances en Química Sustentable</em>, Ed. Ciencia BUAP.</p>
+                <div class="pub-actions">
+                    <a href="#" target="_blank" class="btn-article">
+                        Ver Artículo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <button class="btn-summary" onclick="toggleSummary(this)">
+                        Ver Resumen <i class="fa-solid fa-file-lines"></i>
+                    </button>
+                </div>
+                <div class="pub-summary-content">
+                    <p>Se presenta una compilación de avances en el uso de nanocatalizadores para procesos industriales más limpios. El enfoque principal es la reducción de subproductos tóxicos mediante el diseño de nanopartículas metálicas de alta eficiencia que operan en condiciones de solventes acuosos y baja energía.</p>
+                </div>
+            </div>
+        </article>
+    </div>
+</main>
     </div> 
     <footer class="footer">
         <div class="footer-column branding">
@@ -144,6 +151,23 @@
             <p>&copy; 2026 Laboratorio Nacional de Química | Benemérita Universidad Autónoma de Puebla</p>
         </div>
     </footer>
+<script>
+function toggleSummary(button) {
+    // Buscamos el contenedor de detalles del artículo actual
+    const detailsContainer = button.closest('.pub-details');
+    const summaryContent = detailsContainer.querySelector('.pub-summary-content');
+    
+    // Alternamos la clase 'active' para mostrar/ocultar
+    summaryContent.classList.toggle('active');
+    button.classList.toggle('active');
 
+    // Opcional: Cambiar el texto del botón
+    if (summaryContent.classList.contains('active')) {
+        button.innerHTML = 'Cerrar Resumen <i class="fa-solid fa-xmark"></i>';
+    } else {
+        button.innerHTML = 'Ver Resumen <i class="fa-solid fa-file-lines"></i>';
+    }
+}
+</script>
 </body>
 </html>

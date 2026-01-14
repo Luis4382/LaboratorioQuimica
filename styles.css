@@ -486,6 +486,7 @@ article h3 {
     font-size: 0.85rem;
     margin-bottom: 13px;
     line-height: 1.5;
+    
 }
 
 .contact-info i {
@@ -1040,3 +1041,36 @@ article h3 {
     transform: translateY(-2px);
 }
 
+/* Estilo para el resumen oculto */
+.pub-summary-content {
+    display: none; /* Oculto por defecto */
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-left: 3px solid var(--oscuro);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #555;
+    animation: fadeIn 0.4s ease;
+}
+
+/* Clase que se activará con JS */
+.pub-summary-content.active {
+    display: block;
+}
+
+/* Estilo para el botón cuando está activo */
+.btn-summary.active {
+    background-color: var(--acentopub);
+    color: white;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cambiamos el cursor del botón resumen */
+.btn-summary {
+    cursor: pointer;
+}
